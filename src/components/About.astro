@@ -1,5 +1,5 @@
 ---
-// About.astro
+
 ---
 
 <section
@@ -44,9 +44,9 @@
       <div class="flex justify-center items-center">
         <img
           src="/113patch.png"
-          data-images='["/113patch.png", "/603.png", "/12phqpatch.png"]'
+          data-images='["/113patch.png", "/12phqpatch.png"]'
           alt="113 Patch"
-          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 opacity-100"
+          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 ease-in-out opacity-100"
         />
       </div>
 
@@ -56,7 +56,7 @@
           src="/12delta.png"
           data-images='["/12delta.png", "/12A.png", "/12B.png"]'
           alt="12 Delta"
-          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 opacity-100"
+          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 ease-in-out opacity-100"
         />
       </div>
 
@@ -91,7 +91,7 @@
 
 <script is:inline>
   if (typeof window !== "undefined") {
-    // Fade-in observer
+    // Text fade-in observer
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -108,20 +108,28 @@
     );
     document.querySelectorAll(".about-fade-in").forEach((el) => observer.observe(el));
 
-    // Patch image slideshow
+    // Patch image fade slideshow
     const patchImages = document.querySelectorAll(".patch-slideshow");
+
     patchImages.forEach((img) => {
       const imageList = JSON.parse(img.getAttribute("data-images"));
       let index = 0;
 
       setInterval(() => {
+        // Start fade out
         img.classList.add("opacity-0");
+
+        // After fade out, switch image and fade in
         setTimeout(() => {
           index = (index + 1) % imageList.length;
           img.src = imageList[index];
-          img.classList.remove("opacity-0");
-        }, 1000); // match duration-1000 in Tailwind
-      }, 4000);
+
+          // Fade in after short delay
+          setTimeout(() => {
+            img.classList.remove("opacity-0");
+          }, 50); // Minimal delay for better transition smoothness
+        }, 1000); // Wait for fade-out to complete
+      }, 5000); // Change image every 5 seconds
     });
   }
 </script>
