@@ -116,20 +116,19 @@
       let index = 0;
 
       setInterval(() => {
-        // Start fade out
+        img.classList.remove("opacity-100");
         img.classList.add("opacity-0");
 
-        // After fade out, switch image and fade in
         setTimeout(() => {
           index = (index + 1) % imageList.length;
           img.src = imageList[index];
 
-          // Fade in after short delay
           setTimeout(() => {
             img.classList.remove("opacity-0");
-          }, 50); // Minimal delay for better transition smoothness
-        }, 1000); // Wait for fade-out to complete
-      }, 5000); // Change image every 5 seconds
+            img.classList.add("opacity-100");
+          }, 50); 
+        }, 1000); 
+      }, 5000); 
     });
   }
 </script>
