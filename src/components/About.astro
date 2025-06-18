@@ -1,5 +1,5 @@
 ---
-
+// About.astro
 ---
 
 <section
@@ -8,25 +8,18 @@
   style="background-image: url('/Screen1.png');"
 >
   <!-- Top Blur -->
-  <div
-    class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-black/60 to-transparent z-10"
-  >
-  </div>
+  <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-black/60 to-transparent z-10"></div>
 
   <!-- Bottom Blur -->
-  <div
-    class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/60 to-transparent z-10"
-  >
-  </div>
+  <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
 
   <!-- Overlay -->
   <div class="absolute inset-0 bg-black/60 z-0"></div>
 
   <!-- Content -->
   <div class="relative z-10 flex justify-center items-center w-full">
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full font-mono"
-    >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full font-mono">
+      
       <!-- Top-left box -->
       <div
         class="about-fade-in opacity-0 translate-y-6 transition-all duration-800 bg-white/10 backdrop-blur-sm border border-white/20 p-6 shadow-xl text-white"
@@ -51,8 +44,9 @@
       <div class="flex justify-center items-center">
         <img
           src="/113patch.png"
+          data-images='["/113patch.png", "/603.png", "/12phqpatch.png"]'
           alt="113 Patch"
-          class="w-32 sm:w-52 select-none"
+          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 opacity-100"
         />
       </div>
 
@@ -60,8 +54,9 @@
       <div class="flex justify-center items-center">
         <img
           src="/12delta.png"
+          data-images='["/12delta.png", "/12A.png", "/12B.png"]'
           alt="12 Delta"
-          class="w-32 sm:w-52 select-none"
+          class="patch-slideshow w-32 sm:w-52 select-none transition-opacity duration-1000 opacity-100"
         />
       </div>
 
@@ -96,6 +91,7 @@
 
 <script is:inline>
   if (typeof window !== "undefined") {
+    // Fade-in observer
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -110,8 +106,22 @@
       },
       { threshold: 0 }
     );
-    document
-      .querySelectorAll(".about-fade-in")
-      .forEach((el) => observer.observe(el));
+    document.querySelectorAll(".about-fade-in").forEach((el) => observer.observe(el));
+
+    // Patch image slideshow
+    const patchImages = document.querySelectorAll(".patch-slideshow");
+    patchImages.forEach((img) => {
+      const imageList = JSON.parse(img.getAttribute("data-images"));
+      let index = 0;
+
+      setInterval(() => {
+        img.classList.add("opacity-0");
+        setTimeout(() => {
+          index = (index + 1) % imageList.length;
+          img.src = imageList[index];
+          img.classList.remove("opacity-0");
+        }, 1000); // match duration-1000 in Tailwind
+      }, 4000);
+    });
   }
 </script>
