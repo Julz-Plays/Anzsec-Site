@@ -8,79 +8,61 @@ const sections = [
   },
   {
     id: "6-0-2",
-    title: "Battalion Intelligence",
+    title: "Intelligence",
     description:
-      "The Zeus team, controls the flow of missions, responds to errors and creates immersive combat scenarios.",
+      "The Zeus and intelligence element, controlling mission flow, responding to issues, and creating immersive combat scenarios.",
   },
   {
     id: "6-0-3",
-    title: "Valkyrie Wing",
+    title: "Valkyrie",
     description:
-      "Provides aerial reconnaissance and close air support with rotary assets.",
+      "Provides aerial reconnaissance, transport, and close air support with aviation assets.",
   },
   {
     id: "6-0-4",
-    title: "Reconnaissance Support Section",
-    description:
-      "Conducts forward reconnaissance missions and target acquisition.",
+    title: "Ironside",
+    description: "Provides armoured and heavy weapon capabilities",
   },
   {
-    id: "6-0-5",
-    title: "Logistics Support Section",
+    id: "6-0-7",
+    title: "Foxtrot",
     description:
-      "Handles supply, transport and resupply for the entire battalion.",
+      "Provides specialist recon capabilities to assist company and platoon-level operations.",
   },
   {
     id: "1-1-0",
-    title: "1 Platoon Headquarters",
+    title: "Platoon Headquarters",
     description:
-      "Command element for 1 Platoon, directing subordinate fireteams.",
-  },
-  {
-    id: "1-2-0",
-    title: "2 Platoon Headquarters",
-    description:
-      "Command element for 2 Platoon, directing subordinate fireteams.",
+      "Command element for 1 Platoon, directing subordinate combat sections.",
   },
   {
     id: "1-1-1",
     title: "Alpha Multi-Purpose Combat Section",
     description:
-      "A general-purpose rifle section for assault, defence and patrol tasks.",
+      "A general-purpose rifle section for assault, defence, and patrol tasks.",
   },
   {
     id: "1-1-2",
     title: "Bravo Multi-Purpose Combat Section",
     description:
-      "A general-purpose rifle section for assault, defence and patrol tasks.",
+      "A general-purpose rifle section for assault, defence, and patrol tasks.",
   },
   {
     id: "1-1-3",
     title: "Charlie Multi-Purpose Combat Section",
     description:
-      "A general-purpose rifle section for assault, defence and patrol tasks.",
+      "A general-purpose rifle section for assault, defence, and patrol tasks.",
   },
   {
-    id: "1-2-1",
-    title: "Alpha Multi-Purpose Combat Section",
+    id: "1-1-4",
+    title: "Delta Multi-Purpose Combat Section",
     description:
-      "A general-purpose rifle section for assault, defence and patrol tasks.",
-  },
-  {
-    id: "1-2-2",
-    title: "Bravo Manoeuvre Support Section",
-    description: "A general-purpose rifle section for assault, defence and patrol tasks.",
-  },
-  {
-    id: "1-2-4",
-    title: "Delta Direct Fire Support Weapons",
-    description: "Operates direct-fire support systems (MMGs, HMGs, Javlins).",
+      "A general-purpose rifle section for assault, defence, and patrol tasks.",
   },
 ];
 
-const detachIds = ["6-0-2", "6-0-3", "6-0-4", "6-0-5"];
-const onePltIds = ["1-1-0", "1-1-1", "1-1-2", "1-1-3"];
-const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
+const detachIds = ["6-0-2", "6-0-3", "6-0-4", "6-0-7"];
+const onePltIds = ["1-1-0", "1-1-1", "1-1-2", "1-1-3", "1-1-4"];
 ---
 
 <section
@@ -134,16 +116,18 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
               d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="orbat-content px-4 pb-4 text-white font-mono text-center">
+        <div
+          class="orbat-content px-3 pb-2 text-white font-mono text-center text-sm leading-snug"
+        >
           Leads and coordinates all company-level operations, logistics, and
           administration.
         </div>
       </div>
     </div>
 
-    <!-- 3-Column Responsive Grid -->
+    <!-- 2-Column Responsive Grid -->
     <div
-      class="orbat-fade-in opacity-0 translate-y-6 transition-all duration-700 w-full max-w-6xl px-2 sm:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      class="orbat-fade-in opacity-0 translate-y-6 transition-all duration-700 w-full max-w-5xl px-2 sm:px-4 grid grid-cols-1 md:grid-cols-2 gap-6"
     >
       <!-- Detachments Column -->
       <div class="space-y-4">
@@ -155,7 +139,7 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
             const sec = sections.find((s) => s.id === id);
             if (!sec) return null;
             return (
-              <div class="orbat-card group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden transition-all duration-300 w-full max-w-md">
+              <div class="orbat-card group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg transition-all duration-300 w-full max-w-md mx-auto">
                 <button class="orbat-toggle flex justify-between items-center w-full px-4 py-3 text-white font-semibold hover:cursor-pointer transition-transform hover:scale-105 active:scale-100">
                   <span>
                     {sec.id} — {sec.title}
@@ -175,7 +159,7 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
                     />
                   </svg>
                 </button>
-                <div class="orbat-content px-4 pb-4 text-white text-center">
+                <div class="orbat-content px-3 pb-2 text-white text-center text-sm leading-snug">
                   {sec.description}
                 </div>
               </div>
@@ -194,7 +178,7 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
             const sec = sections.find((s) => s.id === id);
             if (!sec) return null;
             return (
-              <div class="orbat-card group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden transition-all duration-300 w-full max-w-md">
+              <div class="orbat-card group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg transition-all duration-300 w-full max-w-md mx-auto">
                 <button class="orbat-toggle flex justify-between items-center w-full px-4 py-3 text-white font-semibold hover:cursor-pointer transition-transform hover:scale-105 active:scale-100">
                   <span>
                     {sec.id} — {sec.title}
@@ -214,46 +198,7 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
                     />
                   </svg>
                 </button>
-                <div class="orbat-content px-4 pb-4 text-white text-center">
-                  {sec.description}
-                </div>
-              </div>
-            );
-          })
-        }
-      </div>
-
-      <!-- 2 Platoon Column -->
-      <div class="space-y-4">
-        <h3 class="text-white text-lg sm:text-xl font-semibold text-center">
-          2PLT
-        </h3>
-        {
-          twoPltIds.map((id) => {
-            const sec = sections.find((s) => s.id === id);
-            if (!sec) return null;
-            return (
-              <div class="orbat-card group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden transition-all duration-300 w-full max-w-md">
-                <button class="orbat-toggle flex justify-between items-center w-full px-4 py-3 text-white font-semibold hover:cursor-pointer transition-transform hover:scale-105 active:scale-100">
-                  <span>
-                    {sec.id} — {sec.title}
-                  </span>
-                  <svg
-                    class="chevron w-4 h-4 transform transition-transform duration-300"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                <div class="orbat-content px-4 pb-4 text-white text-center">
+                <div class="orbat-content px-3 pb-2 text-white text-center text-sm leading-snug">
                   {sec.description}
                 </div>
               </div>
@@ -307,7 +252,7 @@ const twoPltIds = ["1-2-0", "1-2-1", "1-2-2", "1-2-4"];
           }
         });
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
 
     document
